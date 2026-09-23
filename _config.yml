@@ -1,5 +1,5 @@
 title: Liang Xu's Notes
 description: Data systems, Linux forensics, and AI-assisted analysis
-theme: minima
+theme: jekyll-theme-hacker
 plugins:
   - jekyll-feed

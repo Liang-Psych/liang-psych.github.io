@@ -4,7 +4,7 @@ title: "当 kill(pid, 0) 开始说谎：一次 Linux TID 碰撞认尸实录"
 date: 2026-09-23
 ---
 
-*TL;DR: `kill(pid, 0)` 在 Linux 上可能对着一个早已死去的进程说“还活着”——因为复用这个号码的可能是一个线程。本文记录一次容器内幽灵进程的完整取证：现象、误诊、`/proc` 指纹、以及打给上游的三行补丁。Companion to [posit-dev/positron#16167](https://github.com/posit-dev/positron/issues/16167) and fix [#16176](https://github.com/posit-dev/positron/pull/16176). Ops scripts: [kallichore-watchman](https://github.com/Liang-Psych/kallichore-watchman).*
+*TL;DR: `kill(pid, 0)` 在 Linux 上可能对着一个早已死去的进程说“还活着”——因为复用这个号码的可能是一个线程。本文记录一次容器内幽灵进程的完整取证：现象、误诊、`/proc` 指纹、以及打给上游的三行补丁。Companion to [posit-dev/positron#16167](https://github.com/posit-dev/positron/issues/16167) and fix [#16176](https://github.com/posit-dev/positron/pull/16176) → adopted upstream as [#16224](https://github.com/posit-dev/positron/pull/16224). Ops scripts: [kallichore-watchman](https://github.com/Liang-Psych/kallichore-watchman).*
 
 ## 现象：删不掉的名单
 
